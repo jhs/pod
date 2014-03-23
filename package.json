@@ -1,0 +1,9 @@
+{
+  "name": "pod",
+  "version": "0.1.0",
+  "description": "Fetch podcasts",
+  "bin": "./pod.js",
+  "dependencies": {
+    "feedparser": "^0.16.6"
+  }
+}
