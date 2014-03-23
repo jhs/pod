@@ -4,6 +4,7 @@
   "description": "Fetch podcasts",
   "bin": "./pod.js",
   "dependencies": {
-    "feedparser": "^0.16.6"
+    "feedparser": "^0.16.6",
+    "request": "^2.34.0"
   }
 }
