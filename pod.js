@@ -13,6 +13,7 @@ function fetch(feed) {
 
   req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36')
   req.setHeader('accept', 'text/html,application/xhtml+xml')
+  req.setHeader('accept-encoding', '')
 
   var parser = new Parser
 
@@ -21,6 +22,7 @@ function fetch(feed) {
       return this.emit('error', new Error('Bad status '+res.statusCode+' to feed: ' + feed))
 
     this.pipe(parser)
+    console.log('response headers: %j', res.headers)
   })
 
   parser.on('error', function(er) { req.emit('error', er) })
@@ -31,8 +33,13 @@ function fetch(feed) {
   parser.on('readable', function() {
     var post
     while (post = this.read()) {
-      console.log('Post')
-      console.log(post)
+      console.log(post.title)
+      var enc = post.enclosures || []
+      if(enc.length != 1)
+        return this.emit('error', new Error('Bad enclosures: ' + post.title))
+
+      enc = enc[0]
+      console.dir(enc)
       console.log('')
     }
   })
