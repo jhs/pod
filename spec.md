@@ -1,6 +1,6 @@
 # Podcast fetcher spec
 
-Read from `pods.txt` of a format:
+Read from `shows.txt` of a format:
 
     name1 http://url1.xml 11
     name2 http://url2.xml 22
